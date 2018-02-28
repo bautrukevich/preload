@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Load Babel -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+  <div id="output"></div>
+
+  <script src="dist/preload.min.js"></script>
+  <!-- Your custom script here -->
+  <script type="text/babel">
+    const IMAGE_URL = 'https://www.google.ru/images/branding/googlelogo/2x/googlelogo_color_120x44dp.png';
+    let orImageWithSrc = new Image();
+    orImageWithSrc.src = IMAGE_URL;
+    let orImageWithoutSrc = new Image(); // it's valid and you can set src later
+    
+    const result = preload(IMAGE_URL, orImageWithSrc, orImageWithoutSrc).then(resolved => {
+      console.log(resolved);
+      return resolved;
+    }, rejected => {
+      console.log(rejected);
+      return rejected;
+    });
+  </script>
+</body>
