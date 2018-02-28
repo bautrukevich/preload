@@ -67,11 +67,6 @@ export default function preload(...images) {
   }
 
   return new Promise((resolve, reject) => {
-    // If image doesn't have src reject with 'new' status
-    if (typeof image.src === 'undefined' || image.src === '') {
-      reject([image, STATE_NEW]);
-    }
-
     const fullfill = () => {
       let state = STATE_NEW;
 
@@ -97,6 +92,11 @@ export default function preload(...images) {
     if (image instanceof HTMLImageElement) {
       image.addEventListener('load', fullfill);
       image.addEventListener('error', fullfill);
+    }
+
+    // If image doesn't have src reject with 'new' status
+    if (typeof image.src === 'undefined' || image.src === '') {
+      reject([image, STATE_NEW]);
     }
   });
 }
