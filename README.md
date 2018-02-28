@@ -2,7 +2,7 @@
 
 It's a small library for preload images in browser.
 
-[See demo](https://bautrukevich.github.io/preload)
+[See demo](https://bautrukevich.github.io/preload/)
 
 ## Usage
 
