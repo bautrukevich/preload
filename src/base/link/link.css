@@ -1,0 +1,26 @@
+.link {
+  color: var(--global-color-secondary);
+  text-decoration: none;
+  border-bottom: 1px solid var(--global-color-secondary);
+  transition: color 0.25s ease-out, background-color 0.25s ease-out, border-color 0.25s ease-out, box-shadow 0.25s ease-out;
+  &:hover {
+    transition: color 0s, background-color 0s, border-color 0s, box-shadow 0s;
+    color: var(--global-color-primary);
+    text-decoration: none;
+    border-bottom: 1px solid var(--global-color-primary);
+  }
+  &_underline_none {
+    border-bottom: none;
+    &:hover {
+      border-bottom: none;
+    }
+  }
+  &_color {
+    &_black {
+      color: #3c3c3c;
+      &:hover {
+        color: var(--global-color-primary);
+      }
+    }
+  }
+}

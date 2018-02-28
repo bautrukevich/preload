@@ -1,0 +1,196 @@
+:root {
+  --margin_size_extrasmall: 8px;
+  --margin_size_small: 16px;
+  --margin_size_medium: 24px;
+  --margin_size_mediumlarge: 32px;
+  --margin_size_large: 48px;
+  --margin_size_extralarge: 64px;
+}
+
+.h-margin {
+  &_none {
+    margin: 0;
+  }
+  &_auto {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  &_top {
+    &_none {
+      margin-top: 0;
+    }
+    &_extrasmall {
+      margin-top: var(--margin_size_extrasmall);
+    }
+    &_small {
+      margin-top: var(--margin_size_small);
+    }
+    &_medium {
+      margin-top: var(--margin_size_medium);
+    }
+    &_mediumlarge {
+      margin-top: var(--margin_size_mediumlarge);
+    }
+    &_large {
+      margin-top: var(--margin_size_large);
+    }
+    &_extralarge {
+      margin-top: var(--margin_size_extralarge);
+    }
+  }
+  &_bottom {
+    &_none {
+      margin-bottom: 0;
+    }
+    &_extrasmall {
+      margin-bottom: var(--margin_size_extrasmall);
+    }
+    &_small {
+      margin-bottom: var(--margin_size_small);
+    }
+    &_medium {
+      margin-bottom: var(--margin_size_medium);
+    }
+    &_mediumlarge {
+      margin-bottom: var(--margin_size_mediumlarge);
+    }
+    &_large {
+      margin-bottom: var(--margin_size_large);
+    }
+    &_extralarge {
+      margin-bottom: var(--margin_size_extralarge);
+      /*@include adaptive(xs) {
+        margin-bottom: $margin_size_large;
+      }*/
+    }
+  }
+  &_left {
+    &_none {
+      margin-left: 0;
+    }
+    &_extrasmall {
+      margin-left: var(--margin_size_extrasmall);
+    }
+    &_small {
+      margin-left: var(--margin_size_small);
+    }
+    &_medium {
+      margin-left: var(--margin_size_medium);
+    }
+    &_mediumlarge {
+      margin-left: var(--margin_size_mediumlarge);
+    }
+    &_large {
+      margin-left: var(--margin_size_large);
+    }
+    &_extralarge {
+      margin-left: var(--margin_size_extralarge);
+    }
+  }
+  &_right {
+    &_none {
+      margin-right: 0;
+    }
+    &_extrasmall {
+      margin-right: var(--margin_size_extrasmall);
+    }
+    &_small {
+      margin-right: var(--margin_size_small);
+    }
+    &_medium {
+      margin-right: var(--margin_size_medium);
+    }
+    &_mediumlarge {
+      margin-right: var(--margin_size_mediumlarge);
+    }
+    &_large {
+      margin-right: var(--margin_size_large);
+    }
+    &_extralarge {
+      margin-right: var(--margin_size_extralarge);
+    }
+  }
+  &_around {
+    &_none {
+      margin: 0;
+    }
+    &_extrasmall {
+      margin: var(--margin_size_extrasmall);
+    }
+    &_small {
+      margin: var(--margin_size_small);
+    }
+    &_medium {
+      margin: var(--margin_size_medium);
+    }
+    &_mediumlarge {
+      margin: var(--margin_size_mediumlarge);
+    }
+    &_large {
+      margin: var(--margin_size_large);
+    }
+    &_extralarge {
+      margin: var(--margin_size_extralarge);
+    }
+  }
+  &_vertical {
+    &_none {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+    &_extrasmall {
+      margin-top: var(--margin_size_extrasmall);
+      margin-bottom: var(--margin_size_extrasmall);
+    }
+    &_small {
+      margin-top: var(--margin_size_small);
+      margin-bottom: var(--margin_size_small);
+    }
+    &_medium {
+      margin-top: var(--margin_size_medium);
+      margin-bottom: var(--margin_size_medium);
+    }
+    &_mediumlarge {
+      margin-top: var(--margin_size_mediumlarge);
+      margin-bottom: var(--margin_size_mediumlarge);
+    }
+    &_large {
+      margin-top: var(--margin_size_large);
+      margin-bottom: var(--margin_size_large);
+    }
+    &_extralarge {
+      margin-top: var(--margin_size_extralarge);
+      margin-bottom: var(--margin_size_extralarge);
+    }
+  }
+  &_horizontal {
+    &_none {
+      margin-left: 0;
+      margin-right: 0;
+    }
+    &_extrasmall {
+      margin-left: var(--margin_size_extrasmall);
+      margin-right: var(--margin_size_extrasmall);
+    }
+    &_small {
+      margin-left: var(--margin_size_small);
+      margin-right: var(--margin_size_small);
+    }
+    &_medium {
+      margin-left: var(--margin_size_medium);
+      margin-right: var(--margin_size_medium);
+    }
+    &_mediumlarge {
+      margin-left: var(--margin_size_mediumlarge);
+      margin-right: var(--margin_size_mediumlarge);
+    }
+    &_large {
+      margin-left: var(--margin_size_large);
+      margin-right: var(--margin_size_large);
+    }
+    &_extralarge {
+      margin-left: var(--margin_size_extralarge);
+      margin-right: var(--margin_size_extralarge);
+    }
+  }
+}

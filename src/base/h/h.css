@@ -1,0 +1,24 @@
+.h1, h1 {
+  @apply --text_size_mega;
+  @media (--down-sm-devices) {
+    @apply --text_size_display;
+  }
+}
+.h2, h2 {
+  @apply --text_size_jumbo;
+  @media (--down-sm-devices) {
+    @apply --text_size_headline;
+  }
+}
+.h3, h3 {
+  @apply --text_size_display;
+  @media (--down-sm-devices) {
+    @apply --text_size_title;
+  }
+}
+.h4, h4 {
+  @apply --text_size_headline;
+  @media (--down-sm-devices) {
+    @apply --text_size_subheader;
+  }
+}

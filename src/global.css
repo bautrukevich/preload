@@ -1,0 +1,19 @@
+:root {
+  --global-base-line: 24px;
+  --global-color: #3c3c3c;
+  /*--global-font: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;*/
+  --global-font: 'Gilroy', -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
+
+  --global-color-primary: #FF3C41;
+  --global-color-secondary: #499DF2;
+
+  --global-color-gray-dark: #B4B4B4;
+  --global-color-gray: #EDEEED;
+  --global-color-gray-light: #f8f8f8;
+
+  --global-color-background-gray: #f5f7fb;
+  --global-font-size: 16px;
+  --global-font-size-lead: 24px;
+  --global-font-size-small: 12px;
+  --global-font-size-smaller: 8px;
+}

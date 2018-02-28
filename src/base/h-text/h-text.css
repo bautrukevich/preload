@@ -1,0 +1,174 @@
+:root {
+  --text_size_mega: {
+    margin: 0;
+    padding: 0;
+    font-size: 64px;
+    font-weight: bold;
+    line-height: 1;
+    letter-spacing: 0.2px;
+  };
+  --text_size_jumbo: {
+    margin: 0;
+    padding: 0;
+    font-size: 48px;
+    font-weight: bold;
+    line-height: 1;
+    letter-spacing: 0.2px;
+  };
+  --text_size_display: {
+    margin: 0;
+    padding: 0;
+    font-size: 32px;
+    font-weight: bold;
+    line-height: 1.25;
+    letter-spacing: 0.2px;
+  };
+  --text_size_headline: {
+    margin: 0 0 16px;
+    padding: 0;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 1.33;
+    letter-spacing: 0.2px;
+  };
+  --text_size_title: {
+    margin: 0 0 16px;
+    padding: 0;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1.2;
+    letter-spacing: 0.2px;
+  };
+  --text_size_subheader: {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1.5;
+    letter-spacing: 0.2px;
+  };
+  --text_size_body: {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #787878;
+    letter-spacing: 0.2px;
+  };
+  --text_size_caption: {
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.33;
+    color: #b4b4b4 !important;
+    letter-spacing: 0.2px;
+  };
+}
+
+.h-text {
+  &_size {
+    &_mega {
+      @apply --text_size_mega;
+    }
+    &_jumbo {
+      @apply --text_size_jumbo;
+    }
+    &_display {
+      @apply --text_size_display;
+    }
+    &_headline {
+      @apply --text_size_headline;
+    }
+    &_title {
+      @apply --text_size_title;
+    }
+    &_subheader {
+      @apply --text_size_subheader;
+    }
+    &_body {
+      @apply --text_size_body;
+    }
+    &_caption {
+      @apply --text_size_caption;
+    }
+  }
+  &_resize {
+    &_mega {
+      @apply --text_size_mega;
+      @media (--down-sm-devices) {
+        @apply --text_size_display;
+      }
+    }
+    &_jumbo {
+      @apply --text_size_jumbo;
+      @media (--down-sm-devices) {
+        @apply --text_size_headline;
+      }
+    }
+    &_display {
+      @apply --text_size_display;
+      @media (--down-sm-devices) {
+        @apply --text_size_title;
+      }
+    }
+    &_headline {
+      @apply --text_size_headline;
+      @media (--down-sm-devices) {
+        @apply --text_size_subheader;
+      }
+    }
+    &_title {
+      @apply --text_size_title;
+    }
+    &_subheader {
+      @apply --text_size_subheader;
+    }
+    &_body {
+      @apply --text_size_body;
+    }
+    &_caption {
+      @apply --text_size_caption;
+    }
+  }
+  &_color {
+    &_primary {
+      color: var(--global-color-primary);
+    }
+    &_secondary {
+      color: var(--global-color-secondary);
+    }
+    &_gray-dark {
+      color: var(--global-color-gray-dark);
+    }
+    &_gray {
+      color: var(--global-color-gray);
+    }
+    &_gray-light {
+      color: var(--global-color-gray-light);
+    }
+    &_white {
+      color: #fff;
+    }
+  }
+  &_align {
+    &_left {
+      text-align: left;
+    }
+    &_right {
+      text-align: right;
+    }
+    &_center {
+      text-align: center;
+    }
+  }
+  &_weight {
+    &_normal {
+      font-weight: normal;
+    }
+    &_bold {
+      font-weight: bold !important;
+    }
+  }
+}

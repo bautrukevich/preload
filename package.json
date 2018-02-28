@@ -1,0 +1,37 @@
+{
+  "name": "miks",
+  "version": "1.0.0",
+  "description": "Simple components",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "browser-sync": "^2.23.6",
+    "browser-sync-webpack-plugin": "^2.0.1",
+    "cross-env": "^5.1.3",
+    "laravel-mix": "^2.0.0",
+    "postcss": "^6.0.17",
+    "postcss-browser-reporter": "^0.5.0",
+    "postcss-css-variables": "^0.8.0",
+    "postcss-cssnext": "^3.1.0",
+    "postcss-custom-properties": "^6.2.0",
+    "postcss-import": "^11.1.0",
+    "postcss-nested": "^3.0.0",
+    "postcss-reporter": "^5.0.0",
+    "postcss-url": "^7.3.0",
+    "webpack-livereload-plugin": "^1.0.0"
+  },
+  "dependencies": {
+    "fontfaceobserver": "^2.0.13",
+    "glidejs": "^2.1.0",
+    "jquery": "^3.3.1",
+    "normalize.css": "^8.0.0",
+    "owl.carousel": "^2.2.0",
+    "siema": "^1.5.1"
+  },
+  "scripts": {
+    "dev": "NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "hot": "NODE_ENV=development webpack-dev-server --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "production": "NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+  }
+}

@@ -1,0 +1,11 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: var(--global-font);
+  color: var(--global-color);
+  font-size: var(--global-font-size);
+  line-height: var(--global-base-line);
+  letter-spacing: 0.2px;
+}

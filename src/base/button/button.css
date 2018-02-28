@@ -1,0 +1,82 @@
+.button {
+  margin: 0;
+  border: none;
+  background: none;
+  display: inline-block;
+  //height: calc(var(--global-base-line) * 2);
+  font-size: var(--global-font-size);
+  font-family: var(--global-font);
+  //line-height: var(--global-base-line);
+  padding: calc(var(--global-base-line) / 2) var(--global-base-line);
+  text-decoration: none;
+  border-radius: 4px;
+  text-align: center;
+  box-sizing: border-box;
+  transition: all 0.48s;
+  &:hover {
+    cursor: pointer;
+  }
+  &_with_shadow {
+    &:hover {
+      transition: all 0.24s;
+      box-shadow: 0 16px 32px 0 rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+    }
+  }
+  &_color {
+    &_primary {
+      color: #fff;
+      background-color: var(--global-color-primary);
+      /*&:hover {*/
+        /*background-color: #4964e2;*/
+      /*}*/
+    }
+    &_secondary {
+      color: #fff;
+      background-color: var(--global-color-secondary);
+      /*&:hover {*/
+        /*background-color: #4990ff;*/
+      /*}*/
+    }
+    &_light {
+      color: #4b9bf5;
+      background-color: #EDF5FE;
+      font-weight: bold;
+      &:hover {
+        color: var(--global-color-primary);
+        background-color: #ffe0e0;
+      }
+    }
+  }
+  &_size {
+    &_big {
+      font-size: 24px;
+      line-height: 32px;
+      padding: 16px 32px;
+    }
+    &_small {
+      font-size: 14px;
+      line-height: 24px;
+      padding: 4px 24px;
+    }
+    &_hero {
+      font-size: 20px;
+      font-weight: bold;
+      line-height: 1.2;
+      letter-spacing: 0.2px;
+      padding: 20px 48px;
+    }
+  }
+  &_disabled, &:disabled {
+    background-color: var(--global-color-gray);
+    color: var(--global-color-gray-dark);
+    &:hover {
+      box-shadow: none;
+      cursor: not-allowed;
+    }
+  }
+  &_rounded {
+    border-radius: 32px;
+    box-sizing: border-box;
+  }
+}
