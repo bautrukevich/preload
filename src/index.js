@@ -68,6 +68,11 @@ export default function preload(...images) {
   }
 
   return new Promise((resolve, reject) => {
+    // If image doesn't have src reject with 'new' status
+    if (typeof image.src === 'undefined' || image.src === '') {
+      reject([image, STATE_NEW]);
+    }
+
     const fullfill = () => {
       let state = STATE_NEW;
 
