@@ -4,10 +4,10 @@ export const STATE_LOADED = 'loaded'; // for resolved and loaded images
 export const STATE_FAILED = 'failed'; // for rejected images
 
 // Errors messages for pretty errors in runtime
-export const EMPTY_PARAMS_MESSAGE = 'Empty params: ' +
-  'you can pass an image/images and it must be URL (string) or HTMLImageElement';
-export const TYPE_ERROR_MESSAGE = 'Incorrect params: ' +
-  'image must be URL string or HTMLImageElement';
+export const EMPTY_PARAMS_MESSAGE = `Empty params: 
+  you can pass an image/images and it must be URL (string) or HTMLImageElement`;
+export const TYPE_ERROR_MESSAGE = `Incorrect params: 
+  image must be URL string or HTMLImageElement`;
 
 /**
  * Preload images.
@@ -42,22 +42,27 @@ export default function preload(...images) {
     image = images[0];
   } else {
     // Make recursive call of preload for each image (string URL or HTMLImageElement)
-    const reflected = [].map.call(images, oneImage => preload(oneImage).catch(error => error));
+    const reflected = [].map.call(images, oneImage => {
+      // Check for type errors
+      // Accept only HTMLImageElement interface
+      if (typeof oneImage === 'object' && !(image instanceof HTMLImageElement)) {
+        return Promise.reject(new TypeError(TYPE_ERROR_MESSAGE));
+      }
 
-    return Promise.all(reflected).then(resolved => resolved.filter(oneImage => oneImage[1] !== STATE_FAILED));
+      return preload(oneImage)
+        .catch(reason => reason);
+    });
+
+    return Promise.all(reflected);
   }
 
   // Check for type errors
   // Accept only HTMLImageElement interface
   if (typeof image === 'object' && !(image instanceof HTMLImageElement)) {
-    return Promise.reject(new TypeError(TYPE_ERROR_MESSAGE)).then(reason => reason);
+    return Promise.reject(new TypeError(TYPE_ERROR_MESSAGE));
   }
 
-  // And not empty string
-  if (typeof image === 'string' && image === '') {
-    return Promise.reject(new Error(EMPTY_PARAMS_MESSAGE)).then(reason => reason);
-  }
-
+  // and string
   if (typeof image === 'string') {
     let url = image;
 
@@ -70,6 +75,7 @@ export default function preload(...images) {
     const fullfill = () => {
       let state = STATE_NEW;
 
+      // If the browser can determine the naturalWidth
       if (image.naturalWidth) {
         state = STATE_LOADED;
 
@@ -77,11 +83,8 @@ export default function preload(...images) {
         image.removeEventListener('error', fullfill);
         resolve([image, state]);
       } else if (image.complete) {
-        if (typeof image.src === 'undefined' || image.src === '') {
-          state = STATE_NEW;
-        } else {
-          state = STATE_FAILED;
-        }
+        // If the image is complete but the naturalWidth is 0px
+        state = STATE_FAILED;
 
         image.removeEventListener('load', fullfill);
         image.removeEventListener('error', fullfill);
@@ -89,10 +92,8 @@ export default function preload(...images) {
       }
     };
 
-    if (image instanceof HTMLImageElement) {
-      image.addEventListener('load', fullfill);
-      image.addEventListener('error', fullfill);
-    }
+    image.addEventListener('load', fullfill);
+    image.addEventListener('error', fullfill);
 
     // If image doesn't have src reject with 'new' status
     if (typeof image.src === 'undefined' || image.src === '') {

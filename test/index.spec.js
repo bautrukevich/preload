@@ -22,28 +22,21 @@ describe('Testing preload function', () => {
       return preload().should.be.rejectedWith(Error, EMPTY_PARAMS_MESSAGE);
     });
   });
-  describe('preload(\'\')', () => {
-    it(`should be rejected with Error: ${EMPTY_PARAMS_MESSAGE}`, () => {
-      return preload('').should.be.rejectedWith(Error, EMPTY_PARAMS_MESSAGE);
-    });
-  });
-  describe('preload(\'\', \'\')', () => {
-    it(`should be rejected with Error: ${EMPTY_PARAMS_MESSAGE}`, () => {
-      return preload('', '').should.be.rejectedWith(Error, EMPTY_PARAMS_MESSAGE);
-    });
-  });
-  describe('preload(\'\', new Image())', () => {
-    it(`should be rejected with Error: ${EMPTY_PARAMS_MESSAGE}`, () => {
-      return preload('', new Image()).should.be.rejectedWith(Error, EMPTY_PARAMS_MESSAGE);
-    });
-  });
 
   // Type Error cases
+  // Empty object passed to arguments
   describe('preload({})', () => {
     it(`should be rejected with TypeError: ${TYPE_ERROR_MESSAGE}`, () => {
       return preload({}).should.be.rejectedWith(TypeError, TYPE_ERROR_MESSAGE);
     });
   });
+  // Not HTMLImageElement object passed to arguments
+  describe('preload({a: 1})', () => {
+    it(`should be rejected with TypeError: ${TYPE_ERROR_MESSAGE}`, () => {
+      return preload({a: 1}).should.be.rejectedWith(TypeError, TYPE_ERROR_MESSAGE);
+    });
+  });
+  // Empty objects passed to arguments
   describe('preload({}, {})', () => {
     it(`should be rejected with TypeError: ${TYPE_ERROR_MESSAGE}`, () => {
       return preload({}, {}).should.be.rejectedWith(TypeError, TYPE_ERROR_MESSAGE);
@@ -59,18 +52,62 @@ describe('Testing preload function', () => {
       return preload([], []).should.be.rejectedWith(TypeError, TYPE_ERROR_MESSAGE);
     });
   });
-  describe('preload({a: 1})', () => {
-    it(`should be rejected with TypeError: ${TYPE_ERROR_MESSAGE}`, () => {
-      return preload({a: 1}).should.be.rejectedWith(TypeError, TYPE_ERROR_MESSAGE);
+
+  // Check for resolving and rejecting
+  describe('preload(\'\')', () => {
+    it('should be rejected', () => {
+      return preload('').should.be.rejected;
+    });
+    it(`should be rejected with [[image, '${STATE_NEW}']]]`, () => {
+      let image = new Image();
+
+      return preload(image).should.be.rejectedWith([
+        [image, STATE_NEW]
+      ]);
+    });
+  });
+  describe('preload(\'\', \'\')', () => {
+    it('should be fulfilled', () => {
+      return preload('', '').should.be.fulfilled;
+    });
+    it(`should be rejected with [[image1, '${STATE_NEW}'], [image2, '${STATE_NEW}']]`, () => {
+      let image1 = new Image();
+      let image2 = new Image();
+
+      return preload(IMAGE_URL).should.be.rejectedWith([
+        [image1, STATE_NEW],
+        [image2, STATE_NEW]
+      ]);
+    });
+  });
+  describe('preload(\'\', new Image())', () => {
+    it('should be fulfilled', () => {
+      return preload('', new Image()).should.be.fulfilled;
+    });
+    it(`should be rejected with [[image1, '${STATE_NEW}'], [image2, '${STATE_NEW}']]`, () => {
+      let image1 = new Image();
+      let image2 = new Image();
+
+      return preload(IMAGE_URL).should.be.rejectedWith([
+        [image1, STATE_NEW],
+        [image2, STATE_NEW]
+      ]);
     });
   });
 
-  // Check for resolving and rejecting
-
   // Check for new Image()
   describe('preload(new Image(), \'\')', () => {
-    it('should be resolved', () => {
-      return preload(new Image(), '').should.be.fulfilled();
+    it('should be fulfilled', () => {
+      return preload(new Image(), '').should.be.fulfilled;
+    });
+    it(`should be rejected with [[image1, '${STATE_NEW}'], [image2, '${STATE_NEW}']]`, () => {
+      let image1 = new Image();
+      let image2 = new Image();
+
+      return preload(IMAGE_URL).should.be.rejectedWith([
+        [image1, STATE_NEW],
+        [image2, STATE_NEW]
+      ]);
     });
   });
   // Check for one string

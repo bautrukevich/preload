@@ -13,6 +13,16 @@ It's a small library for preload images in browser.
 
 [See demo](https://bautrukevich.github.io/preload/)
 
+## For what?
+
+#### The problem
+
+Large or a lot of image files may take a second or two to load on the page. Preloading those images early rather than later helps ensure that visitors have a great experience viewing your content.
+
+#### The solution
+
+JavaScript includes the Image among its native object types. The Image object represents an HTML image tag on the page and exposes the same properties and events. Perhaps oddly, the Image has no constructor that accepts an image source, so an image must be loaded into the object by setting its src attribute. Doing so causes the image to be downloaded from the server at that point.
+
 ## Usage
 
 #### Usage from npm

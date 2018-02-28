@@ -32,12 +32,12 @@ let config = {
   module: {
     rules: [
       {
-        test: /(\.jsx|\.js)$/,
+        test: /(\.js)$/,
         loader: 'babel-loader',
         exclude: /(node_modules|bower_components)/
       },
       {
-        test: /(\.jsx|\.js)$/,
+        test: /(\.js)$/,
         loader: 'eslint-loader',
         exclude: /node_modules/
       }
