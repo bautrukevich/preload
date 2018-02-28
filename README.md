@@ -1,4 +1,9 @@
-# preload
+# Preload
+
+[![NPM version][npm-img]][npm-link]
+
+[npm-img]: http://img.shields.io/npm/v/@bautrukevich/preload.svg
+[npm-link]: https://www.npmjs.com/package/@bautrukevich/preload
 
 It's a small library for preload images in browser.
 
@@ -50,3 +55,7 @@ You can use npm or yarn (as you wish).
 ```yarn test``` or ```npm run test``` — run tests once.
 
 ```yarn test:watch``` or ```npm run test:watch``` — run tests in watch mode.
+
+## Browser support
+
+Last 2 versions. No IE.
