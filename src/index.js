@@ -58,7 +58,6 @@ export default function preload(...images) {
     return Promise.reject(new Error(EMPTY_PARAMS_MESSAGE)).then(reason => reason);
   }
 
-  // and not empty string as URL
   if (typeof image === 'string') {
     let url = image;
 
