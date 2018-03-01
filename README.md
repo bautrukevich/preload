@@ -39,8 +39,9 @@ After you can import it and use like this:
 
 ```js
 import preload from '@bautrukevich/preload';
-
+    
 const IMAGE_URL = 'https://www.google.ru/images/branding/googlelogo/2x/googlelogo_color_120x44dp.png';
+const FAILED_IMAGE_URL = 'https://www.google.ru/images/branding/googlelogo/2x.jpg';
 let orImageWithSrc = new Image();
 let orImageWithoutSrc = new Image(); // it's valid and you can set src later
 
@@ -64,7 +65,14 @@ preload(orImageWithoutSrc).then(resolved => {
 preload(IMAGE_URL, orImageWithoutSrc).then(resolved => {
   console.log(resolved);
 }, rejected => {
-  console.log(rejected); // [[HTMLImageElement, 'loaded'], [HTMLImageElement, 'new']]
+  console.log(rejected); // [[HTMLImageElement, 'new']]
+});
+
+// It would be rejected — if at least one image was not loaded
+preload(FAILED_IMAGE_URL, orImageWithSrc).then(resolved => {
+  console.log(resolved);
+}, rejected => {
+  console.log(rejected); // [[HTMLImageElement, 'failed']]
 });
 ```
 
