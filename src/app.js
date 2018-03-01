@@ -2,7 +2,7 @@ import { loadFonts } from './js/utils';
 import preload from '@bautrukevich/preload';
 import Prism from 'prismjs';
 
-// loadFonts();
+loadFonts();
 
 const IMAGE_URL = 'https://www.google.ru/images/branding/googlelogo/2x/googlelogo_color_120x44dp.png';
 

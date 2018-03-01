@@ -1,7 +1,8 @@
 :root {
   --global-base-line: 24px;
   --global-color: #3c3c3c;
-  --global-font: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
+  /*--global-font: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;*/
+  --global-font: 'Gilroy', -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
 
   --global-color-primary: #FF3C41;
   --global-color-secondary: #499DF2;
