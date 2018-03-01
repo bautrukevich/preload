@@ -42,8 +42,9 @@ import preload from '@bautrukevich/preload';
 
 const IMAGE_URL = 'https://www.google.ru/images/branding/googlelogo/2x/googlelogo_color_120x44dp.png';
 let orImageWithSrc = new Image();
-orImageWithSrc.src = IMAGE_URL;
 let orImageWithoutSrc = new Image(); // it's valid and you can set src later
+
+orImageWithSrc.src = IMAGE_URL;
 
 // It would be resolved
 preload(IMAGE_URL, orImageWithSrc).then(resolved => {
