@@ -1,6 +1,6 @@
 {
   "name": "@bautrukevich/preload",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "It's a small library for preload images in browser",
   "main": "src/index.js",
   "scripts": {
