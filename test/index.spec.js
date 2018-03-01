@@ -12,7 +12,7 @@ chai.should();
 chai.expect();
 
 const IMAGE_URL = 'https://www.google.ru/images/branding/googlelogo/2x/googlelogo_color_120x44dp.png';
-const FAILED_IMAGE_URL = 'https://www.google.ru/images/branding/googlelogo/2x/googlelogo_color.png';
+const FAILED_IMAGE_URL = 'https://www.google.ru/images/branding/googlelogo/2x.png';
 const imageWithoutSrc = new Image();
 let imageWithSrcFirst = new Image();
 let imageWithSrcSecond = new Image();
@@ -68,11 +68,11 @@ describe('Testing preload function', () => {
       }).then(done, done);
     });
   });
-  describe(`preload(${FAILED_IMAGE_URL}, imageWithoutSrc)`, () => {
+  describe(`preload(${FAILED_IMAGE_URL})`, () => {
     it('should be rejected', (done) => {
-      return preload(FAILED_IMAGE_URL, imageWithoutSrc).catch(result => {
+      return preload(FAILED_IMAGE_URL).catch(result => {
         expect(result).to.equal([
-          [imageWithSrcFirst, STATE_FAILED]
+          [FAILED_IMAGE_URL, STATE_FAILED]
         ]);
       }).then(done, done);
     });
