@@ -86,7 +86,7 @@ const preloadHTMLImageElement = (image) => (
 /**
  * Preload images in browser.
  * Return Promise on loading images from String (URL) or HTMLImageElement object.
- * @param {string|HTMLImageElement} images Set of URL's or HTMLImageElement's.
+ * @param {String|HTMLImageElement} images Set of URL's or HTMLImageElement's.
  * @return {Promise}
  * @function
  * @example
@@ -105,7 +105,6 @@ const preloadHTMLImageElement = (image) => (
  */
 export default function preload(...images) {
   if (images.length === 0) {
-    // throw new Error(EMPTY_PARAMS_ERROR_MESSAGE);
     return Promise.reject(new Error(EMPTY_PARAMS_ERROR_MESSAGE));
   }
 
