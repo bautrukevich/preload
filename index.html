@@ -10,7 +10,9 @@
 
   <script src="dist/preload.min.js"></script>
   <!-- Your custom script here -->
-  <script type="text/babel">
+  <script data-plugins="transform-es2015-modules-umd" type="text/babel">
+    import preload from '@bautrukevich/preload';
+    
     const IMAGE_URL = 'https://www.google.ru/images/branding/googlelogo/2x/googlelogo_color_120x44dp.png';
     let orImageWithSrc = new Image();
     orImageWithSrc.src = IMAGE_URL;
