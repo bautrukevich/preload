@@ -2,6 +2,7 @@
 export const STATE_NEW = 'new'; // for all new Image() without src
 export const STATE_LOADED = 'loaded'; // for resolved and loaded images
 export const STATE_FAILED = 'failed'; // for rejected images
+export const STATE_ABORTED = 'aborted'; // for rejected images
 
 // Errors messages for pretty errors in runtime
 export const EMPTY_PARAMS_ERROR_MESSAGE = `Empty params: 
@@ -78,9 +79,14 @@ const preloadHTMLImageElement = (image) => (
       resolve([image, STATE_FAILED]);
     };
 
+    const onAbort = () => {
+      resolve([image, STATE_ABORTED]);
+    };
+
     // Register event listeners
     image.addEventListener('load', onLoad);
     image.addEventListener('error', onError);
+    image.addEventListener('abort', onAbort);
   })
 );
 
