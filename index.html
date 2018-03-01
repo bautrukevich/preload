@@ -28,13 +28,15 @@
                 <p class="h-text_resize_body h-margin_bottom_large">JavaScript includes the Image among its native object types. The Image object represents an HTML image tag on the page and exposes the same properties and events. Perhaps oddly, the Image has no constructor that accepts an image source, so an image must be loaded into the object by setting its src attribute. Doing so causes the image to be downloaded from the server at that point.</p>
             </div>
         </div>
-        <div class="row justify-content-center">
+        <div class="row justify-content-center h-margin_bottom_medium">
             <div class="col-md-10">
                 <h4 class="h-margin_bottom_small">Example</h4>
                 <p class="h-text_size_body h-margin_bottom_small">First image receive src after loading and second was added dynamically:</p>
                 <div class="h-margin_bottom_medium">
-                    <pre >
-                    <code class="language-javascript">
+                    <pre>
+                        <code class="language-javascript">
+    import preload from '@bautrukevich/preload';
+
     const IMAGE_URL = 'https://www.google.ru/images/branding/googlelogo/2x/googlelogo_color_120x44dp.png';
     
     preload(IMAGE_URL).then(loaded => {
@@ -53,8 +55,47 @@
     });
                         </code>
                     </pre>
+                    
                 </div>
                 <img id="image" class="h-margin_right_small" src="" alt="" height="44px">
+            </div>
+        </div>
+        <div class="row justify-content-center h-margin_bottom_medium">
+            <div class="col-md-10">
+                <h4 class="h-margin_bottom_small">More cases</h4>
+                <div class="h-margin_bottom_small">
+                    <pre>
+                        <code class="language-javascript">
+    import preload from '@bautrukevich/preload';
+    
+    const IMAGE_URL = 'https://www.google.ru/images/branding/googlelogo/2x/googlelogo_color_120x44dp.png';
+    let orImageWithSrc = new Image();
+    let orImageWithoutSrc = new Image(); // it's valid and you can set src later
+    orImageWithSrc.src = IMAGE_URL;
+    
+    // It would be resolved
+    preload(IMAGE_URL, orImageWithSrc).then(resolved => {
+      console.log(resolved); // [[HTMLImageElement, 'loaded'], [HTMLImageElement, 'loaded']]
+    }, rejected => {
+      console.log(rejected);
+    });
+    
+    // It would be rejected
+    preload(orImageWithoutSrc).then(resolved => {
+      console.log(resolved);
+    }, rejected => {
+      console.log(rejected); // [[HTMLImageElement, 'new']]
+    });
+    
+    // It would be rejected — if at least one image was not loaded
+    preload(IMAGE_URL, orImageWithoutSrc).then(resolved => {
+      console.log(resolved);
+    }, rejected => {
+      console.log(rejected); // [[HTMLImageElement, 'loaded'], [HTMLImageElement, 'new']]
+    });
+                        </code>
+                    </pre>
+                </div>
             </div>
         </div>
     </section>
