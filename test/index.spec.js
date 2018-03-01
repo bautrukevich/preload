@@ -58,40 +58,44 @@ describe('Testing preload function', () => {
     it('should be rejected', () => {
       return preload('').should.be.rejected;
     });
-    it(`should be rejected with [[image, '${STATE_NEW}']]]`, () => {
+    it(`should be rejected with [[image, '${STATE_NEW}']]]`, (done) => {
       let image = new Image();
 
-      return preload(image).should.be.rejectedWith([
-        [image, STATE_NEW]
-      ]);
+      image.src = '';
+
+      return preload('').then(result => {
+        expect(result).to.equal([image, STATE_NEW]);
+      }).then(done, done);
     });
   });
   describe('preload(\'\', \'\')', () => {
     it('should be fulfilled', () => {
-      return preload('', '').should.be.fulfilled;
-    });
-    it(`should be rejected with [[image1, '${STATE_NEW}'], [image2, '${STATE_NEW}']]`, (done) => {
-      let image1 = new Image();
-      let image2 = new Image();
-
-      return preload('', '').then(result => {
-        console.log(result);
-        return expect(result).to.equal([
-          [image1, STATE_NEW],
-          [image2, STATE_NEW]
-        ]);
-      }).then(done, done);
-    });
-  });
-  describe('preload(\'\', new Image())', () => {
-    it('should be fulfilled', () => {
-      return preload('', new Image()).should.be.fulfilled;
+      return preload('', '').should.be.rejected;
     });
     it(`should be rejected with [[image1, '${STATE_NEW}'], [image2, '${STATE_NEW}']]`, () => {
       let image1 = new Image();
       let image2 = new Image();
 
-      return preload(IMAGE_URL).should.be.rejectedWith([
+      return preload('', '').then(result => {
+        expect(result).to.deep.equal([
+          [image1, STATE_NEW],
+          [image2, STATE_NEW]
+        ]);
+      });
+    });
+  });
+  describe('preload(\'\', new Image())', () => {
+    it('should be rejected', () => {
+      return preload('', new Image()).should.be.rejected;
+    });
+    it(`should be rejected with [[image1, '${STATE_NEW}'], [image2, '${STATE_NEW}']]`, () => {
+      let image1 = new Image();
+      let image2 = new Image();
+
+      image1.src = '';
+      image2.src = '';
+
+      return preload('', new Image()).should.be.rejectedWith([
         [image1, STATE_NEW],
         [image2, STATE_NEW]
       ]);
@@ -100,12 +104,15 @@ describe('Testing preload function', () => {
 
   // Check for new Image()
   describe('preload(new Image(), \'\')', () => {
-    it('should be fulfilled', () => {
-      return preload(new Image(), '').should.be.fulfilled;
+    it('should be rejected', () => {
+      return preload(new Image(), '').should.be.rejected;
     });
     it(`should be rejected with [[image1, '${STATE_NEW}'], [image2, '${STATE_NEW}']]`, () => {
       let image1 = new Image();
       let image2 = new Image();
+
+      image1.src = '';
+      image2.src = '';
 
       return preload(IMAGE_URL).should.be.rejectedWith([
         [image1, STATE_NEW],
@@ -123,7 +130,7 @@ describe('Testing preload function', () => {
 
       image.src = IMAGE_URL;
 
-      preload(IMAGE_URL).should.eventually.equal([
+      preload(IMAGE_URL).should.eventually.deep.equal([
         [image, STATE_LOADED]
       ]);
     });
@@ -140,7 +147,7 @@ describe('Testing preload function', () => {
       image1.src = IMAGE_URL;
       image2.src = IMAGE_URL;
 
-      return preload(IMAGE_URL).should.eventually.equal([
+      return preload(IMAGE_URL).should.eventually.deep.equal([
         [image1, STATE_LOADED],
         [image2, STATE_LOADED]
       ]);
@@ -148,14 +155,17 @@ describe('Testing preload function', () => {
   });
   // Check for two new Image() without src
   describe('preload(new Image(), new Image())', () => {
-    it('should be resolved', () => {
-      return preload(new Image(), new Image()).should.be.resolved;
+    it('should be rejected', () => {
+      return preload(new Image(), new Image()).should.be.rejected;
     });
     it(`should eventually equal [[image1, '${STATE_NEW}'], [image2, '${STATE_NEW}']]`, () => {
       let image1 = new Image();
       let image2 = new Image();
 
-      return preload(IMAGE_URL).should.eventually.equal([
+      image1.src = '';
+      image2.src = '';
+
+      return preload(new Image(), new Image()).should.eventually.deep.equal([
         [image1, STATE_NEW],
         [image2, STATE_NEW]
       ]);
@@ -180,7 +190,6 @@ describe('Testing preload function', () => {
       let image2 = new Image();
 
       image1.src = IMAGE_URL;
-      image2.src = IMAGE_URL;
 
       return preload(image1, image2).should.be.resolved;
     });
@@ -196,7 +205,7 @@ describe('Testing preload function', () => {
     });
   });
   // Check for string and new Image()
-  describe('preload(image, new Image())', () => {
+  describe('preload(imageWithSrc, new Image())', () => {
     it('should be resolved', () => {
       let image = new Image();
 
@@ -204,16 +213,19 @@ describe('Testing preload function', () => {
 
       return preload(image, new Image()).should.be.resolved;
     });
-    it(`should eventually equal [[imageWithSrc, '${STATE_LOADED}'], [image, '${STATE_NEW}']]`, () => {
+    it(`expect to equal [[imageWithSrc, '${STATE_LOADED}'], [image, '${STATE_NEW}']]`, (done) => {
       let image = new Image();
       let imageWithSrc = new Image();
 
+      image.src = '';
       imageWithSrc.src = IMAGE_URL;
 
-      return preload(imageWithSrc, image).should.eventually.equal([
-        [imageWithSrc, STATE_LOADED],
-        [image, STATE_NEW]
-      ]);
+      return preload(imageWithSrc, new Image()).then(result => {
+        expect(result).to.equal([
+          [imageWithSrc, STATE_LOADED],
+          [image, STATE_NEW]
+        ]);
+      }).then(done, done);
     });
   });
 });

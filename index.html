@@ -16,12 +16,10 @@
     orImageWithSrc.src = IMAGE_URL;
     let orImageWithoutSrc = new Image(); // it's valid and you can set src later
     
-    const result = preload(IMAGE_URL, orImageWithSrc, orImageWithoutSrc).then(resolved => {
+    preload(IMAGE_URL, orImageWithSrc, orImageWithoutSrc).then(resolved => {
       console.log(resolved);
-      return resolved;
     }, rejected => {
       console.log(rejected);
-      return rejected;
     });
   </script>
 </body>

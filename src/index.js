@@ -112,13 +112,16 @@ export default function preload(...images) {
   if (images.length === 1) {
     const image = checkAndPrepareImage(images[0]);
 
-    return Promise.all([preloadHTMLImageElement(image).catch(reason => reason)]);
+    return Promise.all([
+      preloadHTMLImageElement(image)
+    ]);
   }
 
   // Make preload for each image (string URL or HTMLImageElement)
   const reflected = images.map(image => (
-    preloadHTMLImageElement(checkAndPrepareImage(image))
-      .catch(reason => reason)
+    preloadHTMLImageElement(
+      checkAndPrepareImage(image)
+    )
   ));
 
   return Promise.all(reflected);
