@@ -348,28 +348,28 @@ template {
 
 @font-face {
   font-family: 'Gilroy';
-  src: url(/fonts/329DD5_11_0.woff2?e4e07c258073bae1f8cd8cb371d18a86) format('woff2'), url(/fonts/329DD5_11_0.woff?9f522b6710e77a525f954f8e13298e74) format('woff');
+  src: url(fonts/329DD5_11_0.woff2?e4e07c258073bae1f8cd8cb371d18a86) format('woff2'), url(fonts/329DD5_11_0.woff?9f522b6710e77a525f954f8e13298e74) format('woff');
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Gilroy';
-  src: url(/fonts/329DD5_6_0.woff2?13690db858049d946ab672004de7e8d7) format('woff2'), url(/fonts/329DD5_6_0.woff?cf6cebbd96098e01cf981fa7fee64d84) format('woff');
+  src: url(fonts/329DD5_6_0.woff2?13690db858049d946ab672004de7e8d7) format('woff2'), url(fonts/329DD5_6_0.woff?cf6cebbd96098e01cf981fa7fee64d84) format('woff');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Gilroy';
-  src: url(/fonts/329DD5_9_0.woff2?60069fbebf284905f0288e24af31ab5e) format('woff2'), url(/fonts/329DD5_9_0.woff?80c0e23fee60232af26d8db83818b5d8) format('woff');
+  src: url(fonts/329DD5_9_0.woff2?60069fbebf284905f0288e24af31ab5e) format('woff2'), url(fonts/329DD5_9_0.woff?80c0e23fee60232af26d8db83818b5d8) format('woff');
   font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Gilroy';
-  src: url(/fonts/329DD5_5_0.woff2?cb0bfcc38f2aebee92faf6da46b586e4) format('woff2'), url(/fonts/329DD5_5_0.woff?e18537305c6dd05f5bbd73a67b5ee4de) format('woff');
+  src: url(fonts/329DD5_5_0.woff2?cb0bfcc38f2aebee92faf6da46b586e4) format('woff2'), url(fonts/329DD5_5_0.woff?e18537305c6dd05f5bbd73a67b5ee4de) format('woff');
   font-weight: 300;
   font-style: normal;
 }
