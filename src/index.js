@@ -21,9 +21,10 @@ const checkAndPrepareImage = (image) => {
     case 'object':
       if (!(image instanceof HTMLImageElement)) {
         Promise.reject(new TypeError(TYPE_ERROR_MESSAGE));
-      }
-      if (typeof image.src === 'undefined') {
-        image.src = '';
+      } else {
+        if (typeof image.src === 'undefined') {
+          image.src = '';
+        }
       }
       break;
     // and string

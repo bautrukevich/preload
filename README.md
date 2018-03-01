@@ -39,16 +39,24 @@ After you can import it and use like this:
 
 ```js
 import preload from '@bautrukevich/preload';
+    
+    const IMAGE_URL = 'https://www.google.ru/images/branding/googlelogo/2x/googlelogo_color_120x44dp.png';
+    let orImageWithSrc = new Image();
+    orImageWithSrc.src = IMAGE_URL;
+    let orImageWithoutSrc = new Image(); // it's valid and you can set src later
 
-let orImageWithSrc = new Image();
-orImageWithSrc.src = '/url/path/to/image';
-let orImageWithoutSrc = new Image(); // it's valid and you can set src later
-
-const result = preload('/url/path/to/image', orImageWithSrc, orImageWithoutSrc)
-    .then(resolved => {
+    // It would be resolved
+    preload(IMAGE_URL, orImageWithSrc).then(resolved => {
       console.log(resolved);
     }, rejected => {
-      console.log(rejected);
+      console.log(rejected); // [[HTMLImageElement, 'loaded'], [HTMLImageElement, 'loaded']]
+    });
+
+    // It would be rejected
+    preload(orImageWithoutSrc).then(resolved => {
+      console.log(resolved);
+    }, rejected => {
+      console.log(rejected); // [[HTMLImageElement, 'new']]
     });
 ```
 

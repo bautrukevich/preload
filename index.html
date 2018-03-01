@@ -17,11 +17,19 @@
     let orImageWithSrc = new Image();
     orImageWithSrc.src = IMAGE_URL;
     let orImageWithoutSrc = new Image(); // it's valid and you can set src later
-    
-    preload(IMAGE_URL, orImageWithSrc, orImageWithoutSrc).then(resolved => {
+
+    // It would be resolved
+    preload(IMAGE_URL, orImageWithSrc).then(resolved => {
       console.log(resolved);
     }, rejected => {
-      console.log(rejected);
+      console.log(rejected); // [[HTMLImageElement, 'loaded'], [HTMLImageElement, 'loaded']]
+    });
+
+    // It would be rejected
+    preload(orImageWithoutSrc).then(resolved => {
+      console.log(resolved);
+    }, rejected => {
+      console.log(rejected); // [[HTMLImageElement, 'new']]
     });
   </script>
 </body>
