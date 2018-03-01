@@ -30,7 +30,7 @@ describe('Testing preload function', () => {
     });
   });
   // Check for resolve
-  describe(`preload(${IMAGE_URL})`, () => {
+  describe(`preload('${IMAGE_URL}')`, () => {
     it('should be resolved', (done) => {
       return preload(IMAGE_URL).then(result => {
         expect(result).to.equal([
@@ -39,7 +39,7 @@ describe('Testing preload function', () => {
       }).then(done, done);
     });
   });
-  describe(`preload(${IMAGE_URL}, imageWithSrcFirst)`, () => {
+  describe(`preload('${IMAGE_URL}', imageWithSrcFirst)`, () => {
     it('should be resolved', (done) => {
       return preload(IMAGE_URL, imageWithSrcFirst).then(result => {
         expect(result).to.equal([
@@ -59,20 +59,31 @@ describe('Testing preload function', () => {
       }).then(done, done);
     });
   });
-  describe(`preload(${IMAGE_URL}, imageWithoutSrc)`, () => {
+  describe(`preload('${IMAGE_URL}', imageWithoutSrc)`, () => {
     it('should be rejected', (done) => {
       return preload(IMAGE_URL, imageWithoutSrc).catch(result => {
         expect(result).to.equal([
+          [imageWithSrcFirst, STATE_LOADED],
           [imageWithSrcFirst, STATE_NEW]
         ]);
       }).then(done, done);
     });
   });
-  describe(`preload(${FAILED_IMAGE_URL})`, () => {
+  describe(`preload('${FAILED_IMAGE_URL}')`, () => {
     it('should be rejected', (done) => {
       return preload(FAILED_IMAGE_URL).catch(result => {
         expect(result).to.equal([
           [FAILED_IMAGE_URL, STATE_FAILED]
+        ]);
+      }).then(done, done);
+    });
+  });
+  describe(`preload('${FAILED_IMAGE_URL}', imageWithoutSrc)`, () => {
+    it('should be rejected', (done) => {
+      return preload(FAILED_IMAGE_URL, imageWithoutSrc).catch(result => {
+        expect(result).to.equal([
+          [FAILED_IMAGE_URL, STATE_FAILED],
+          [imageWithoutSrc, STATE_NEW]
         ]);
       }).then(done, done);
     });
