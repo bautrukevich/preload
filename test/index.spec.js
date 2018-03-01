@@ -12,7 +12,7 @@ chai.should();
 chai.expect();
 
 const IMAGE_URL = 'https://www.google.ru/images/branding/googlelogo/2x/googlelogo_color_120x44dp.png';
-const FAILED_IMAGE_URL = 'https://www.google.ru/images/branding/googlelogo/2x.png';
+const FAILED_IMAGE_URL = 'https://www.google.ru/images/branding/googlelogo/2';
 const imageWithoutSrc = new Image();
 let imageWithSrcFirst = new Image();
 let imageWithSrcSecond = new Image();
