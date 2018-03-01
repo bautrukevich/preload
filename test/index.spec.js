@@ -1,9 +1,9 @@
 import { describe, it } from 'mocha';
-import chai from 'chai';
+import chai, { expect, should } from 'chai';
 import chaiAsPromised from 'chai-as-promised';
 import preload, {
   TYPE_ERROR_MESSAGE,
-  EMPTY_PARAMS_MESSAGE,
+  EMPTY_PARAMS_ERROR_MESSAGE,
   STATE_NEW,
   STATE_LOADED
 } from '../src/index';
@@ -18,8 +18,8 @@ describe('Testing preload function', () => {
 
   // Empty params
   describe('preload()', () => {
-    it(`should be rejected with Error: ${EMPTY_PARAMS_MESSAGE}`, () => {
-      return preload().should.be.rejectedWith(Error, EMPTY_PARAMS_MESSAGE);
+    it(`should be rejected with Error: ${EMPTY_PARAMS_ERROR_MESSAGE}`, () => {
+      return preload().should.be.rejectedWith(Error, EMPTY_PARAMS_ERROR_MESSAGE);
     });
   });
 
@@ -70,14 +70,17 @@ describe('Testing preload function', () => {
     it('should be fulfilled', () => {
       return preload('', '').should.be.fulfilled;
     });
-    it(`should be rejected with [[image1, '${STATE_NEW}'], [image2, '${STATE_NEW}']]`, () => {
+    it(`should be rejected with [[image1, '${STATE_NEW}'], [image2, '${STATE_NEW}']]`, (done) => {
       let image1 = new Image();
       let image2 = new Image();
 
-      return preload(IMAGE_URL).should.be.rejectedWith([
-        [image1, STATE_NEW],
-        [image2, STATE_NEW]
-      ]);
+      return preload('', '').then(result => {
+        console.log(result);
+        return expect(result).to.equal([
+          [image1, STATE_NEW],
+          [image2, STATE_NEW]
+        ]);
+      }).then(done, done);
     });
   });
   describe('preload(\'\', new Image())', () => {
