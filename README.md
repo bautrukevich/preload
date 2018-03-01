@@ -40,24 +40,24 @@ After you can import it and use like this:
 ```js
 import preload from '@bautrukevich/preload';
     
-    const IMAGE_URL = 'https://www.google.ru/images/branding/googlelogo/2x/googlelogo_color_120x44dp.png';
-    let orImageWithSrc = new Image();
-    orImageWithSrc.src = IMAGE_URL;
-    let orImageWithoutSrc = new Image(); // it's valid and you can set src later
+const IMAGE_URL = 'https://www.google.ru/images/branding/googlelogo/2x/googlelogo_color_120x44dp.png';
+let orImageWithSrc = new Image();
+orImageWithSrc.src = IMAGE_URL;
+let orImageWithoutSrc = new Image(); // it's valid and you can set src later
 
-    // It would be resolved
-    preload(IMAGE_URL, orImageWithSrc).then(resolved => {
-      console.log(resolved);
-    }, rejected => {
-      console.log(rejected); // [[HTMLImageElement, 'loaded'], [HTMLImageElement, 'loaded']]
-    });
+// It would be resolved
+preload(IMAGE_URL, orImageWithSrc).then(resolved => {
+  console.log(resolved);
+}, rejected => {
+  console.log(rejected); // [[HTMLImageElement, 'loaded'], [HTMLImageElement, 'loaded']]
+});
 
-    // It would be rejected
-    preload(orImageWithoutSrc).then(resolved => {
-      console.log(resolved);
-    }, rejected => {
-      console.log(rejected); // [[HTMLImageElement, 'new']]
-    });
+// It would be rejected
+preload(orImageWithoutSrc).then(resolved => {
+  console.log(resolved);
+}, rejected => {
+  console.log(rejected); // [[HTMLImageElement, 'new']]
+});
 ```
 
 ```preload``` function accept any number of arguments such as ```URL (string)``` or ```HTMLImageElement (new Image() or document.createElement('img'))``` and return ```Promise``` with ```[[source, 'state'], [source, 'state']...]```, where ```source``` — HTMLImageElement and ```state``` — state of his loading (can be ```'new'```, ```'loaded'```, ```'failed'```).
