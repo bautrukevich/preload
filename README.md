@@ -54,6 +54,8 @@ const result = preload('/url/path/to/image', orImageWithSrc, orImageWithoutSrc)
 
 ```preload``` function accept any number of arguments such as ```URL (string)``` or ```HTMLImageElement (new Image() or document.createElement('img'))``` and return ```Promise``` with ```[[source, 'state'], [source, 'state']...]```, where ```source``` — HTMLImageElement and ```state``` — state of his loading (can be ```'new'```, ```'loaded'```, ```'failed'```).
 
+Promise resolves if all images was loaded successfully and rejected if at least one not.
+
 #### Usage from dist
 
 You can simply install library using npm or download and add script ```/dist/preload.min.js``` to your page and use ```preload()``` function.
