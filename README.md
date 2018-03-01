@@ -65,14 +65,14 @@ preload(orImageWithoutSrc).then(resolved => {
 preload(IMAGE_URL, orImageWithoutSrc).then(resolved => {
   console.log(resolved);
 }, rejected => {
-  console.log(rejected); // [[HTMLImageElement, 'new']]
+  console.log(rejected); // [[HTMLImageElement, 'loaded'], [HTMLImageElement, 'new']]
 });
 
 // It would be rejected — if at least one image was not loaded
 preload(FAILED_IMAGE_URL, orImageWithSrc).then(resolved => {
   console.log(resolved);
 }, rejected => {
-  console.log(rejected); // [[HTMLImageElement, 'failed']]
+  console.log(rejected); // [[HTMLImageElement, 'failed'], [HTMLImageElement, 'loaded']]
 });
 ```
 

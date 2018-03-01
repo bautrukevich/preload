@@ -52,7 +52,7 @@ const preloadHTMLImageElement = (image) => (
   new Promise((resolve, reject) => {
     // If image doesn't have src reject with 'new' state
     if (image.src === '') {
-      reject([image, STATE_NEW]);
+      resolve([image, STATE_NEW]);
     }
 
     const onLoad = () => {
@@ -70,12 +70,12 @@ const preloadHTMLImageElement = (image) => (
       if (image.complete) {
         state = STATE_FAILED;
 
-        reject([image, state]);
+        resolve([image, state]);
       }
     };
 
     const onError = () => {
-      reject([image, STATE_FAILED]);
+      resolve([image, STATE_FAILED]);
     };
 
     // Register event listeners
@@ -83,6 +83,20 @@ const preloadHTMLImageElement = (image) => (
     image.addEventListener('error', onError);
   })
 );
+
+/**
+ * Filter results by state.
+ * @param {Array} results Array of resolved results.
+ */
+const onFulfill = results => {
+  const loaded = results.filter(result => result[1] === STATE_LOADED);
+
+  if (loaded.length === results.length) {
+    return Promise.resolve(loaded);
+  }
+
+  return Promise.reject(results);
+};
 
 /**
  * Preload images in browser.
@@ -115,7 +129,7 @@ export default function preload(...images) {
 
     return Promise.all([
       preloadHTMLImageElement(image)
-    ]);
+    ]).then(onFulfill);
   }
 
   // Make preload for each image (string URL or HTMLImageElement)
@@ -125,5 +139,5 @@ export default function preload(...images) {
     )
   ));
 
-  return Promise.all(reflected);
+  return Promise.all(reflected).then(onFulfill);
 }
