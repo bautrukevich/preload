@@ -16,7 +16,7 @@ mix.webpackConfig({
 });
 
 // mix.copy('./src/fonts', './public/fonts');
-mix.copy('./src/static/content', './content');
+// mix.copy('./src/static/content', './content');
 
 mix.postCss('src/app.css', 'css', [
   require('postcss-import')({addDependencyTo: webpack}),
@@ -31,10 +31,6 @@ mix.postCss('src/app.css', 'css', [
   require('postcss-reporter')(),
   require('postcss-custom-properties')()
 ]).js('src/app.js', 'js');
-
-mix.autoload({
-  jquery: ['$', 'window.jQuery']
-});
 
 mix.browserSync({
   proxy: false,

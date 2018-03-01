@@ -1,7 +1,7 @@
 {
   "name": "miks",
   "version": "1.0.0",
-  "description": "Simple components",
+  "description": "Preload demo",
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
@@ -21,12 +21,11 @@
     "webpack-livereload-plugin": "^1.0.0"
   },
   "dependencies": {
+    "@bautrukevich/preload": "^0.1.1",
     "fontfaceobserver": "^2.0.13",
-    "glidejs": "^2.1.0",
-    "jquery": "^3.3.1",
+    "highlight.js": "^9.12.0",
     "normalize.css": "^8.0.0",
-    "owl.carousel": "^2.2.0",
-    "siema": "^1.5.1"
+    "prismjs": "^1.11.0"
   },
   "scripts": {
     "dev": "NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
