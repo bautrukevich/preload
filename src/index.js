@@ -93,8 +93,9 @@ const preloadHTMLImageElement = (image) => (
  * import preload from '@bautrukevich/preload';
  *
  * let orImageWithSrc = new Image();
- * orImageWithSrc.src = '/url/path/to/image';
  * let orImageWithoutSrc = new Image(); // it's valid and you can set src later
+ *
+ * orImageWithSrc.src = '/url/path/to/image';
  *
  * const result = preload('/url/path/to/image', orImageWithSrc, orImageWithoutSrc)
  *  .then(resolved => {
